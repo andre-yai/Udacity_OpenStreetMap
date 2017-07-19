@@ -24,19 +24,19 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 
 ## Problems Encountered in the map:
 
-	## Challenges Encountered:
-		- Street Names:
-			- I found that some street names they were written in caps letters and other wasn't. So I tried to uniformalize those. Example: "RUA","rUa" when the correct and most commom used is "Rua".
+### Challenges Encountered:
+- Street Names:
+	- I found that some street names they were written in caps letters and other wasn't. So I tried to uniformalize those. Example: "RUA","rUa" when the correct and most commom used is "Rua".
 
-			- I also found that some street names there wasn't a type on them. Example: "Angelo Meneguesso", "Oito". So we cannot know if it a street, avenue or  a road.
-		- PostCode: 
-			- Post Codes from São Paulo City is 5 numbers and than be follow by a hiffen and more three numbers and  must have: less than 0600 or in between 0800 and 0850.
-			- I found that some places were from anothers cities like: "Santos", "Santana de Parnaíba". "São Caetano"
-			- I also found that some postcodes from "São Paulo" were incomplete like: from "Rua Bresser": "1194"
+	- I also found that some street names there wasn't a type on them. Example: "Angelo Meneguesso", "Oito". So we cannot know if it a street, avenue or  a road.
+- PostCode: 
+	- Post Codes from São Paulo City is 5 numbers and than be follow by a hiffen and more three numbers and  must have: less than 0600 or in between 0800 and 0850.
+	- I found that some places were from anothers cities like: "Santos", "Santana de Parnaíba". "São Caetano"
+	- I also found that some postcodes from "São Paulo" were incomplete like: from "Rua Bresser": "1194"
 
-	### Problems are Cleaned Programmaticaly:
+### Problems are Cleaned Programmaticaly:
 
-		- I solved the uniformatly probem for street names.
+	- I solved the uniformatly probem for street names.
 
 
 ### Overview of the data:
@@ -53,108 +53,106 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 
 ### Oversize statistics:
 
-		- number of unique users:
-		```sql
-		sqlite> SELECT COUNT(DISTINCT(e.uid))          
-				FROM (SELECT uid FROM nodes UNION ALL SELECT uid FROM ways) e;
-		```
-		There are 2178 users.
+- number of unique users:
+```sql
+sqlite> SELECT COUNT(DISTINCT(e.uid))          
+FROM (SELECT uid FROM nodes UNION ALL SELECT uid FROM ways) e;
+```
+There are 2178 users.
 
-		- number of nodes and ways:
+- number of nodes and ways:
 
-			- Number of Nodes:
+- Number of Nodes:
 
-				```sql
-				sqlite> SELECT COUNT(*) FROM nodes;
-				```
-				4003764 Nodes
-
-			- Number of ways:
-				'''sql
-				sqlite> SELECT COUNT(*) FROM ways;
-				'''
-				553876 ways
-
-		- number of chosen type of nodes, like cafes, shops etc.
+```sql
+	sqlite> SELECT COUNT(*) FROM nodes;
+```
+4003764 Nodes
+- Number of ways:
+'''sql
+sqlite> SELECT COUNT(*) FROM ways;
+'''
+553876 ways
 
 ### Top 10 contributing users
-		```sql
-		sqlite> SELECT SUM(num)
-		FROM(
-			SELECT e.user, COUNT(*) as num
-			FROM (SELECT user FROM nodes UNION ALL SELECT user FROM ways) e
-			GROUP BY e.user
-			ORDER BY num DESC
-			LIMIT 10);
-		```
+```sql
+sqlite> SELECT SUM(num)
+FROM(
+	SELECT e.user, COUNT(*) as num
+	FROM (SELECT user FROM nodes UNION ALL SELECT user FROM ways) e
+	GROUP BY e.user
+	ORDER BY num DESC
+	LIMIT 10);
+```
 
-		Bonix-Mapper,2345049
-		AjBelnuovo,262639
-		cxs,191624
-		MCPicoli,106375
-		"O Fim",105778
-		johnmogi,95857
-		ygorre,91096
-		patodiez,85006
-		naoliv,84366
-		"Roberto Costa",65525
+Bonix-Mapper,2345049
+AjBelnuovo,262639
+cxs,191624
+MCPicoli,106375
+"O Fim",105778
+johnmogi,95857
+ygorre,91096
+patodiez,85006
+naoliv,84366
+"Roberto Costa",65525
 
-		Responsable for 3433315 points, which is 75% of data.
+Responsable for 3433315 points, which is 75% of data.
 
 ### Number of user appering only once 
 
-		```sql
-		sqlite> SELECT COUNT(*) FROM (SELECT e.user, COUNT(*) as num
-	   	...> FROM (Select user from nodes union all select user from ways) e
-	    ...> Group by e.user
-   		...> Having num = 1)
-		```
+```sql
+sqlite> SELECT COUNT(*) FROM (SELECT e.user, COUNT(*) as num
+...> FROM (Select user from nodes union all select user from ways) e
+...> Group by e.user
+...> Having num = 1)
+```
 
-   		There are 476 users with only 1 post.
+There are 476 users with only 1 post.
 
 
-   		```sql
-   		SELECT COUNT(*) FROM (SELECT e.user, COUNT(*) as num
-   		FROM (Select user from nodes union all select user from ways) e
-   		Group by e.user
-   		Having num < 5) ;
-   		```
+```sql
+SELECT COUNT(*) FROM (SELECT e.user, COUNT(*) as num
+FROM (Select user from nodes union all select user from ways) e
+Group by e.user
+Having num < 5) ;
+```
 
-   		There are 847 users with less than 5 posts.
+There are 847 users with less than 5 posts.
 
 # Contributor statistics and gamification suggestion
 
-	The contributions of users seems incredibly skewed, possibly due to automated versus manual map editing (the word “bot” appears in some usernames). Here are some user percentage statistics:
+The contributions of users seems incredibly skewed, possibly due to automated versus manual map editing (the word “bot” appears in some usernames). Here are some user percentage statistics:
 
-	Top user contribution percentage (“Bonix-Mapper”) 51.45%
-	Combined top 2 users' contribution (“Bonix-Mapper” and “AjBelnuovo”) 57.21%
-	Combined Top 10 users contribution 75.3%
-	There were 0.38% (847) of users that did less than 5 posts.
+Top user contribution percentage (“Bonix-Mapper”) 51.45%
+Combined top 2 users' contribution (“Bonix-Mapper” and “AjBelnuovo”) 57.21%
+Combined Top 10 users contribution 75.3%
+There were 0.38% (847) of users that did less than 5 posts.
 
 
 ## Additional Data Exploration
 
 ### Top 10 appearing amenities
 	
-	```sql
-	sqlite> SELECT value, COUNT(*) as num
-	FROM nodes_tags
-	WHERE key='amenity'
-	GROUP BY value
-	ORDER BY num DESC
-	LIMIT 10;
-	```
-	restaurant|1132
-	bank|685
-	fuel|615
-	fast_food|477
-	school|473
-	parking|427
-	pharmacy|410
-	pub|379
-	place_of_worship|359
-	bicycle_rental|274
-
+```sql
+sqlite> SELECT value, COUNT(*) as num
+FROM nodes_tags
+WHERE key='amenity'
+GROUP BY value
+ORDER BY num DESC
+LIMIT 10;
+```
+```sql
+restaurant|1132
+bank|685
+fuel|615
+fast_food|477
+school|473
+parking|427
+pharmacy|410
+pub|379
+place_of_worship|359
+bicycle_rental|274
+```
 
 
 References:
