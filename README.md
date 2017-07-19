@@ -25,6 +25,7 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 ## Problems Encountered in the map:
 
 ### Challenges Encountered:
+
 - Street Names:
 	- I found that some street names they were written in caps letters and other wasn't. So I tried to uniformalize those. Example: "RUA","rUa" when the correct and most commom used is "Rua".
 
@@ -36,20 +37,20 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 
 ### Problems are Cleaned Programmaticaly:
 
-	- I solved the uniformatly probem for street names.
+	- I solved the uniformatly problem for street names.
 
 
 ### Overview of the data:
 
 ### OSM XML Size:
 		
-		sao-paulo_brazil.osm ......... 907 MB
-		database_OSM.db.........658.3 MB
-		nodes.csv ............. 346.6 MB
-		nodes_tags.csv ........ 9.5 MB
-		ways.csv .............. 34.5 MB
-		ways_tags.csv ......... 51.1 MB
-		ways_nodes.cv ......... 132 MB  
+	sao-paulo_brazil.osm ......... 907 MB
+	database_OSM.db.........658.3 MB
+	nodes.csv ............. 346.6 MB
+	nodes_tags.csv ........ 9.5 MB
+	ways.csv .............. 34.5 MB
+	ways_tags.csv ......... 51.1 MB
+	ways_nodes.cv ......... 132 MB  
 
 ### Oversize statistics:
 
