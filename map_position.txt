@@ -1,0 +1,10 @@
+### Map Area
+
+São Paulo, SP, Brazil
+
+- [](link for Sao Paulo Map on OpenStreetMap)
+- [](link for Sao Paulo OSM)
+
+This area is my hometown, so I'm more interesetd to see what database querying reveals and I'd like to contribute to it's improment o OpenStreetMap.org.
+
+The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -23.6162 ,  min lng: -46.6421 max lng:  -46.6193.
