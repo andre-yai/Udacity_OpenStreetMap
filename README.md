@@ -41,7 +41,7 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 
 ### Overview of the data:
 
-	### OSM XML Size:
+### OSM XML Size:
 		
 		sao-paulo_brazil.osm ......... 907 MB
 		database_OSM.db.........658.3 MB
@@ -51,7 +51,7 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 		ways_tags.csv ......... 51.1 MB
 		ways_nodes.cv ......... 132 MB  
 
-	### Oversize statistics:
+### Oversize statistics:
 
 		- number of unique users:
 		```sql
@@ -77,7 +77,7 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 
 		- number of chosen type of nodes, like cafes, shops etc.
 
-		### Top 10 contributing users
+### Top 10 contributing users
 		```sql
 		sqlite> SELECT SUM(num)
 		FROM(
@@ -101,7 +101,7 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 
 		Responsable for 3433315 points, which is 75% of data.
 
-		### Number of user appering only once 
+### Number of user appering only once 
 
 		```sql
 		sqlite> SELECT COUNT(*) FROM (SELECT e.user, COUNT(*) as num
@@ -122,7 +122,7 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 
    		There are 847 users with less than 5 posts.
 
-	# Contributor statistics and gamification suggestion
+# Contributor statistics and gamification suggestion
 
 	The contributions of users seems incredibly skewed, possibly due to automated versus manual map editing (the word “bot” appears in some usernames). Here are some user percentage statistics:
 
