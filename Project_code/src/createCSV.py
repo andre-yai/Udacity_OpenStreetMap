@@ -49,24 +49,28 @@ def process_map(context):
          codecs.open(WAY_NODES_PATH, 'w') as way_nodes_file, \
          codecs.open(WAY_TAGS_PATH, 'w') as way_tags_file:
 
-      nodes_writer = UnicodeDictWriter(nodes_file, NODE_FIELDS)
-      node_tags_writer = UnicodeDictWriter(nodes_tags_file, NODE_TAGS_FIELDS)
-      ways_writer = UnicodeDictWriter(ways_file, WAY_FIELDS)
-      way_nodes_writer = UnicodeDictWriter(way_nodes_file, WAY_NODES_FIELDS)
-      way_tags_writer = UnicodeDictWriter(way_tags_file, WAY_TAGS_FIELDS)
+      if(len(context["nodes"]) > 0):
 
-      nodes_writer.writeheader()
-      node_tags_writer.writeheader()
-      ways_writer.writeheader()
-      way_nodes_writer.writeheader()
-      way_tags_writer.writeheader()
-
-
-      for node in context["nodes"]:
-        nodes_writer.writerow(node["node"])
-        node_tags_writer.writerows(node['node_tags'])
+        nodes_writer = UnicodeDictWriter(nodes_file, NODE_FIELDS)
+        node_tags_writer = UnicodeDictWriter(nodes_tags_file, NODE_TAGS_FIELDS)
         
-      for way in context["ways"]:
-        ways_writer.writerow(way['way'])
-        way_nodes_writer.writerows(way['way_nodes'])
-        way_tags_writer.writerows(way['way_tags'])
+        nodes_writer.writeheader()
+        node_tags_writer.writeheader()
+
+        for node in context["nodes"]:
+          nodes_writer.writerow(node["node"])
+          node_tags_writer.writerows(node['node_tags'])
+      
+      if(len(context["ways"]) > 0):
+        ways_writer = UnicodeDictWriter(ways_file, WAY_FIELDS)
+        way_nodes_writer = UnicodeDictWriter(way_nodes_file, WAY_NODES_FIELDS)
+        way_tags_writer = UnicodeDictWriter(way_tags_file, WAY_TAGS_FIELDS)
+
+        ways_writer.writeheader()
+        way_nodes_writer.writeheader()
+        way_tags_writer.writeheader()
+
+        for way in context["ways"]:
+          ways_writer.writerow(way['way'])
+          way_nodes_writer.writerows(way['way_nodes'])
+          way_tags_writer.writerows(way['way_tags'])

@@ -6,59 +6,50 @@ from unicodedata import normalize
 
 street_type_re = re.compile(r'^([\w\-]+)', re.IGNORECASE)
 
-lower = re.compile(r'^([a-z]|_)*$')
-lower_colon = re.compile(r'^([a-z]|_)*:([a-z]|_)*$')
-problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
-
-expected = ["Praca","Pateo",'Vale','Largo','Vila','Viaduto','Parque',"Rua", "Avenida", "Rodovia", "Marginal","Alameda","Travessa","Estrada","Viela"]
-
-mapping = { "Av": "Avenida",
-            "av": "Avenida",
-            "praca": "Praca",
-            "R.":"Rua",
-            "Av": "Avenida",
-            "Al": "Alameda",
-            "rua": "Rua",
-            "R": "Rua",
-            "RUA": "Rua",
-            "avenida":"Avenida",
-            "estrada":"Estrada",
-            "rUa": "Rua",
-            "Rue": "Rua"
-            }
-
-def remover_acentos(txt, codif='utf-8'):
+def remove_pontuations(txt, codif='utf-8'):
+    
+    """
+    This function will remove the pontuation of a certain text.
+    """
 
     return normalize('NFKD', txt.decode(codif)).encode('ASCII','ignore')
 
-def audit_street(tag):
+def audit_street(tag,expected_types, mapping_to_expected):
 
-    # YOUR CODE HERE
+    """
+    This function will evaluate the tag for street looking if it part of the expected list of in the mapping diccionary.
+    If it is in the map it will update it value. It will return a status true if it is in mapping diccionary of in expected list
+    otherwise it will return false and it also returns the street name. 
+    """
+
+    is_valid = True
     if("street" in tag):
-	    name = remover_acentos( u''.join(tag["street"]).encode('utf-8'));
-	    m = street_type_re.search(name)
-	    if m:
-	        street_type = m.group()
-	        if ((street_type not in expected) and (street_type in mapping)):
-                #update Name:
-
-                print(name, " => " mapping[street_type] + name[(len(street_type)):])
-	            name = mapping[street_type] + name[(len(street_type)):]
-	       
+        name = remove_pontuations( u''.join(tag["street"]).encode('utf-8'))
+        m = street_type_re.search(name)
+	    
+        if m:
+            street_type = m.group()
+            if((street_type not in expected_types) and (street_type in mapping_to_expected)):
+                name = mapping_to_expected[street_type] + name[(len(street_type)):]
             else:
-                if ((street_type not in expected) and (street_type not in mapping)):
-	        	  print("Type not included:", street_type,"=>", name);
+                if ((street_type not in expected_types) and (street_type not in mapping_to_expected)):
+                    is_valid = False
+                    print("Type not included:", street_type,"=>", name)
+        tag["street"] = name;    
+    
+    return is_valid,tag;
 
-	    tag["street"] = name;    
-    return tag;
-
-PostCodes = {};
-# https://thiagorodrigo.com.br/artigo/cep-sao-paulo-lista-de-cep-por-bairro-e-cidade-da-grande-sao-paulo/
-def audit_postcode(tag):
-	if("postcode" in tag):
-		value = tag["postcode"];
-		if(not (value[0:4] < "0600" or (value[0:4] > "0800" and value[0:4] < "0850"))):
-			print("WRONG POSTCODES tag:",tag);
-	return;
+def audit_postcode(tag,is_valid_postcode):
+    """
+    This function will evaluate the tag for postcode. If it is a Sao Paulo  postcode it returns true otherwise false.
+    """
+    
+    is_valid = True
+    if("postcode" in tag):
+        value = tag["postcode"]
+        if(is_valid_postcode(value)):
+            print("WRONG POSTCODES tag:",tag)
+            is_valid = False
+    return is_valid;
 
 

@@ -37,7 +37,8 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 
 ### Problems are Cleaned Programmaticaly:
 
-	- I solved the uniformatly problem for street names.
+	- I solved the uniformatly problem for street names. Example: 
+	- TODO: Revome the postcodes. And letter do a quer showing the error.
 
 
 ### Overview of the data:
@@ -154,6 +155,10 @@ pub|379
 place_of_worship|359
 bicycle_rental|274
 ```
+
+## TODO: Sugestion to improve the data:
+- 
+- 
 
 
 References:
