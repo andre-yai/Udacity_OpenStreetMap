@@ -150,28 +150,26 @@ There are 2178 users.
 		naoliv,84366
 		"Roberto Costa",65525
 
-		Responsable for 3433315 points, which is 75% of data.
+Responsable for 3433315 points, which is 75% of data.
 
-		### Number of user appering only once 
+### Number of user appering only once 
 
-		```sql
-		sqlite> SELECT COUNT(*) FROM (SELECT e.user, COUNT(*) as num
-	   	...> FROM (Select user from nodes union all select user from ways) e
-	    ...> Group by e.user
-   		...> Having num = 1)
-		```
+```sql
+    sqlite> SELECT COUNT(*) FROM (SELECT e.user, COUNT(*) as num
+    ...> FROM (Select user from nodes union all select user from ways) e
+    ...> Group by e.user
+    ...> Having num = 1)
+```
+There are 476 users with only 1 post.
 
-   		There are 476 users with only 1 post.
 
-
-   		```sql
-   		SELECT COUNT(*) FROM (SELECT e.user, COUNT(*) as num
-   		FROM (Select user from nodes union all select user from ways) e
-   		Group by e.user
-   		Having num < 5) ;
-   		```
-
-   		There are 847 users with less than 5 posts.
+```sql
+    SELECT COUNT(*) FROM (SELECT e.user, COUNT(*) as num
+    FROM (Select user from nodes union all select user from ways) e
+    Group by e.user
+    Having num < 5) ;
+```
+There are 847 users with less than 5 posts.
 
 # Contributor statistics and gamification suggestion
 
