@@ -92,7 +92,7 @@ After a investigation n those points (doing some more queries and using Google M
 
 ### Overview of the data:
 
-	### OSM XML Size:
+### OSM XML Size:
 		
 		sao-paulo_brazil.osm ......... 907 MB
 		database_OSM.db.........658.3 MB
@@ -128,16 +128,17 @@ There are 2178 users.
 
 - number of chosen type of nodes, like cafes, shops etc.
 
-		### Top 10 contributing users
-		```sql
-		sqlite> SELECT SUM(num)
-		FROM(
-			SELECT e.user, COUNT(*) as num
-			FROM (SELECT user FROM nodes UNION ALL SELECT user FROM ways) e
-			GROUP BY e.user
-			ORDER BY num DESC
-			LIMIT 10);
-		```
+### Top 10 contributing users
+
+```sql
+sqlite> SELECT SUM(num)
+FROM(
+        SELECT e.user, COUNT(*) as num
+        FROM (SELECT user FROM nodes UNION ALL SELECT user FROM ways) e
+        GROUP BY e.user
+        ORDER BY num DESC
+        LIMIT 10);
+```
 
 		Bonix-Mapper,2345049
 		AjBelnuovo,262639
