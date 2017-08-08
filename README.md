@@ -3,7 +3,11 @@
 
 ## Project
 
-This is a project where I needed to choose an area of the world in the OpenStreetMap and use data munging techiques, such as assessing the quality of the data for validity, accuracy, completeness, consistency and uniformity, to clean the OpenStreetMap data for a part of the world that you care about. Choose to learn SQL or MongoDB and apply your chosen schema to the project.
+This is a project where I needed to choose an area of the world in the OpenStreetMap and use data munging techiques, such as assessing the quality of the data for validity, accuracy, completeness, consistency and uniformity, to clean a certain area of OpenStreetMap.
+
+## Installation
+
+In this project I used python2.7 and you may need to install some libraries like cerberus, xml,codecs.
 
 ## Code Organization:
 
