@@ -38,7 +38,7 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 			- Post Codes from São Paulo City is 5 numbers and than be follow by a hiffen and more three numbers and  must have: less than 0600 or in between 0800 and 0850.
 			- I found that some places were from anothers cities like: "Santos", "Santana de Parnaíba". "São Caetano"
 			- I also found that some postcodes were incomplete like: from "Rua Bresser": "1194"
-			
+
 			Example of Problems:
 				- Others cities in dataset: Mauá,Jundiai, Cotia, Santos.
 				- Some postcodes are incomplete.
@@ -210,9 +210,9 @@ The small area I whose their coordinates are:  min lat:  -23.6246 , max lat:  -2
 
 ## Ideas to Improve the dataset:
 
-	- As showed above the dataset contained some points from others cities (like Santos) it will be nice it had some way to verify the new points when they are created. Google Maps could be used in this process.
+	- As showed above the dataset contained some points from others cities (like Santos) it will be nice it had some way to verify the new points when they are created. Google Maps could be used in this process. But this may also cause a legal issue or something like that since it is using data from another source
 
-	- Due to the low number of users contributions to Open Street Map I think that another idea would be if it had an app with gamifications to incentivate differents users to contribute to the system.
+	- Due to the low number of users contributions to Open Street Map I think that another idea would be if it had an app with gamifications to incentivate differents users to contribute to the system. Alhough it can improve the participation of new users the developer that creates the app may have collected the data and use to another task.
 
 
 References:
